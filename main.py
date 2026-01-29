@@ -356,4 +356,5 @@ if __name__ == '__main__':
         os.makedirs(app.config['BOOKS_STORAGE'])
     if not os.path.exists(app.config['COVERS_STORAGE']):
         os.makedirs(app.config['COVERS_STORAGE'])
-    app.run(host='0.0.0.0', port=5000)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host='0.0.0.0', port=port)
