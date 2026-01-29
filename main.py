@@ -18,10 +18,11 @@ app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
 
 # Database configuration
 DB_CONFIG = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': '',
-    'database': 'readscape_db'
+    'host': os.getenv('MYSQLHOST'),
+    'user': os.getenv('MYSQLUSER'),
+    'password': os.getenv('MYSQLPASSWORD'),
+    'database': os.getenv('MYSQLDATABASE'),
+    'port': int(os.getenv('MYSQLPORT', 3306))
 }
 
 def get_db_connection():
@@ -355,4 +356,4 @@ if __name__ == '__main__':
         os.makedirs(app.config['BOOKS_STORAGE'])
     if not os.path.exists(app.config['COVERS_STORAGE']):
         os.makedirs(app.config['COVERS_STORAGE'])
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5000)
