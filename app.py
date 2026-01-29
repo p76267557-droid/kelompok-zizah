@@ -15,6 +15,7 @@ app.config['SECRET_KEY'] = 'readscape-secret-key-2024'
 app.config['BOOKS_STORAGE'] = 'books_storage'
 app.config['COVERS_STORAGE'] = 'covers'
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024  # 16MB max file size
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Database configuration
 DB_CONFIG = {
@@ -74,7 +75,8 @@ def token_required(f):
 
 @app.route('/covers/<path:filename>')
 def get_cover_image(filename):
-    return send_from_directory(app.config['COVERS_STORAGE'], filename)
+    covers_path = os.path.join(BASE_DIR, app.config['COVERS_STORAGE'])
+    return send_from_directory(covers_path, filename)
 
 @app.route('/register', methods=['POST'])
 def register():
