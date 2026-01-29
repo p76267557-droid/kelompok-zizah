@@ -29,10 +29,12 @@ def get_db_connection():
     """Create database connection"""
     try:
         connection = mysql.connector.connect(**DB_CONFIG)
+        print("✅ Database connected successfully")
         return connection
     except Error as e:
-        print(f"Database connection error: {e}")
+        print(f"❌ Database connection error: {e}")
         return None
+
 
 def token_required(f):
     """Decorator for token-based authentication"""
