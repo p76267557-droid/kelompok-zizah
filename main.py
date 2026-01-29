@@ -26,11 +26,7 @@ DB_CONFIG = {
 }
 
 def get_db_connection():
-    """Create database connection"""
     print("DB_CONFIG:", DB_CONFIG)
-    if None in DB_CONFIG.values():
-        print("❌ Warning: Some DB config values are None")
-        
     try:
         connection = mysql.connector.connect(**DB_CONFIG)
         print("✅ Database connected successfully")
@@ -38,6 +34,7 @@ def get_db_connection():
     except Error as e:
         print(f"❌ Database connection error: {e}")
         return None
+
 
 def token_required(f):
     """Decorator for token-based authentication"""
