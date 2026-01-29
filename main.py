@@ -352,11 +352,3 @@ def update_profile():
 def health_check():
     """Health check endpoint"""
     return jsonify({'status': 'healthy'}), 200
-
-if __name__ == '__main__':
-    if not os.path.exists(app.config['BOOKS_STORAGE']):
-        os.makedirs(app.config['BOOKS_STORAGE'])
-    if not os.path.exists(app.config['COVERS_STORAGE']):
-        os.makedirs(app.config['COVERS_STORAGE'])
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host='0.0.0.0', port=port)
